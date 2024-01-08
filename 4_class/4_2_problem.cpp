@@ -90,10 +90,10 @@ void Date::ShowDate() {
 int main()
 {   
     // 생성자 : Date 클래스의 day 객체를 만들면서 Date(int year, int month, int day) 를 호출한다는 의미
-    Date day(2011, 3, 1);           // 생성자(Constructor) : 암시적방법 (implicit)
+    Date day(2011, 3, 1);             // 생성자(Constructor) : 암시적방법 (implicit)
     Date day2 = Date(2016, 6, 12);    // 생성자(Constructor) : 명시적 방법 (explicit)
-    Date day3 = Date();                 // 디폴트 생성자
-    Date day4;                      // 생성자 없이 객체 생성
+    Date day3 = Date();               // 디폴트 생성자
+    Date day4;                        // 생성자 없이 객체 생성
 
     day.ShowDate();
     day2.ShowDate();
