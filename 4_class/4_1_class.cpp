@@ -32,7 +32,7 @@ int main() {
 
     Animal animal;          // instance 생성
 
-    animal.set_animal(100, 50);
+    animal.set_animal(100, 50);     // public function을 통해 food과 weight에 값을 set 한다.
     animal.increase_food(30);    
     animal.view_stat();
     return 0;
