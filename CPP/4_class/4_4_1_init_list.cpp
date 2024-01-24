@@ -2,8 +2,6 @@
     생성자의 초기화 리스트(initalizer list)
 
 */
-
-
 #include <iostream>
 
 class Marine {
@@ -12,8 +10,6 @@ class Marine {
     // int damage;            // 공격력
     const int default_damage;  // 기본 공격력
     bool is_dead;
-
-
 
     public:
         Marine();              // 기본 생성자
@@ -40,7 +36,7 @@ Marine::Marine() : hp(50), coord_x(0), coord_y(0), default_damage(5), is_dead(fa
 
 Marine::Marine(int x, int y) : coord_x(x), coord_y(y), hp(50), default_damage(5), is_dead(false) {}
 
-Marine::Marine(int x, int y, int default_damage)
+Marine::Marine(int x, int y, int default_damage) 
     : coord_x(x), coord_y(y), hp(50), default_damage(default_damage), is_dead(false) {}
 
 void Marine::move(int x, int y) 
