@@ -18,9 +18,14 @@ int function()
     return a4;
 }
 
-int& function2() {
-  int a5 = 2;
-  return a5;
+// int& function2() {
+//   int a5 = 2;
+//   return a5;
+// }
+
+int function3() {
+    int a6 = 5;
+    return a6;
 }
 
 int main()
@@ -50,8 +55,6 @@ int main()
     int b = 3;
     // int& another_a = b;      // error 발생
 
-
-
     // ****** 함수 인자로 레퍼런스 받기 ******
     int number2 = 5;
     int gg;
@@ -65,7 +68,6 @@ int main()
     change_val2(number2);
     std::cout << number2 << std::endl;      // 3
     
-
 
     // ****** 여러가지 참조자 예시들 ******
     /*
@@ -112,7 +114,6 @@ int main()
     int b3;
     // int& arr[2] = {a3,b3};
 
-    
     /*
         배열들의 reference는 가능함
     */
@@ -136,12 +137,37 @@ int main()
         이를 참고하여 아래 예시를 보자
     */
     int b4 = function();
-    std::cout << " b4 : " << b4 << std::endl;
+    std::cout << "b4 : " << b4 << std::endl;
 
-    // 이 부분 이해 안감,
-    int b5 = function2();
+    /*
+        < Dangling reference >
+        function2의 return 타입은 int&이다. 따라서 참조자를 리턴한다.
+        근데, fuction2에 정의되있는 a5는 함수 return과 함께 사라진다.
+        return과 동시에 a5가 살아있어야 하는데 a5는 사라져서,, error가 발생
 
+    */
+    // int b5 = function2();
+
+    /*
+        참조자가 아닌 값을 리턴하는 함수를 참조자로 받기
+    */
+    // function3의 return 값은 해당 문장이 끝난 후 바로 사라지는 값이기 때문에
+    // 참조자를 만들게 되면 dangling ref가 발생
+    // int& b6 = function3();       // error
+
+    // 그러나 예외규칙이 있음,, const 참조자를 받으면 컴파일이 잘됨
+    // 원칙상 함수의 return 값은 해당 문장이 끝나면 소멸되는게 정상이나,,
+    // 예외적으로 상수 레퍼런스로 리턴값을 받게 되면 해당 리턴값의 생명이 연장됨
+    const int& b6 = function3();
+    std::cout << "b6 : " << b6 << std::endl;
+
+    /*
+        정리
+        return 값           / int f()       / int& f()
+        int a = f()         / 값 복사됨     / 값 복사됨. 다만 지역 변수의 레퍼런스를 리턴하지 않도록 주의
+        int& a = f()        / 컴파일 오류   / 가능. 다만 마찬가지로 지역 변수의 레퍼런스를 리턴하지 않도록 주의
+        const int& a = f()  / 가능          / 가능. 다만 마찬가지로 지역 변수의 레퍼런스를 리턴하지 않도록 주의
     
-
+    */
     return 0;
 }
